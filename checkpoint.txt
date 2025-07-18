@@ -1,0 +1,55 @@
+import React from 'react';
+
+// Step 1: Define a TypeScript interface for props
+interface GreetingProps {
+  name: string; // Ensure 'name' is a string
+}
+
+// Step 2: Add type annotation to props in functional component
+const Greeting: React.FC<GreetingProps> = ({ name }) => {
+  return <div>Hello, {name}!</div>;
+};
+
+export default Greeting;
+
+
+
+
+
+---------------------------------------------------------------
+
+
+import React, { Component } from 'react';
+
+// Step 1: Define a TypeScript interface for state
+interface CounterState {
+  count: number; // count must be a number
+}
+
+// Step 2: Define props interface (empty in this case)
+interface CounterProps {} // No props passed to Counter
+
+// Step 3: Add type annotations to class component using generics
+class Counter extends Component<CounterProps, CounterState> {
+  // Step 4: Define initial state with proper type
+  state: CounterState = {
+    count: 0,
+  };
+
+  // Step 5: Type method correctly (can also add return type as void)
+  increment = (): void => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  // Step 6: Ensure JSX is returned properly (fix misplaced return line)
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    );
+  }
+}
+
+export default Counter;
